@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chiemrie</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <script>
+      //here Chiemerie I assigned each id to a variable
+      // so that I can call them easily into a function
+      let responsivenessSlider = function () {
+        let slider = document.getElementById("slider");
+        let sliderWidth = slider.offsetWidth;
+        let slideList = document.getElementById("slideWrap");
+        let count = 1;
+        let items = slideList.querySelectorAll("li").length;
+        let prev = document.getElementById("prev");
+        let next = document.getElementById("next");
+
+        //here i call in my event listener Emerie hope yp\ou know what event listeners are?
+        //slider.offsetWidth; === this is an inbuilt javascript parameter browse about it to get to know more
+        window.addEventListener("resize", function () {
+          sliderWidth = slider.offsetWidth;
+        });
+
+        //this is that your unclick event what I want it t0 do when i click it
+        //i used es6 here its same as function
+        //what should happen when i click prev
+        let prevSlide = () => {
+          if (count > 1) {
+            count = count - 2;
+            slideList.style.left = "-" + count * sliderWidth + "px";
+            count++;
+          } else if ((count = 1)) {
+            count = items - 1;
+            slideList.style.left = "-" + count * sliderWidth + "px";
+            count++;
+          }
+        };
+        //what should happen when i click next
+
+        let nextSlide = () => {
+          if (count < items) {
+            slideList.style.left = "-" + count * sliderWidth + "px";
+            count++;
+          } else if ((count = items)) {
+            slideList.style.left = "0px";
+            count = 1;
+          }
+        };
+
+        //calls the function nextslide when clicked which nw performs the above operation ie the if statements above chiemerie
+
+        next.addEventListener("click", function () {
+          nextSlide();
+        });
+
+        prev.addEventListener("click", function () {
+          prevSlide();
+        });
+
+        //CHIEMERIE pay attention this is the code that runs it automatically a very simple
+        //few lines of code
+
+        setInterval(function () {
+          nextSlide();
+        }, 3000);
+      };
+
+      window.onload = function () {
+        responsivenessSlider();
+      };
+    </script>
+
+    <h1>Hi man</h1>
+    <h3>Chiemrie take a look at the Javascript code</h3>
+
+    <div id="slider">
+      <ul id="slideWrap">
+        <li><img src="./pics1.jpeg" alt="img1" /></li>
+        <li><img src="./pics2.jpeg" alt="img1" /></li>
+        <li><img src="./pics3.jpeg" alt="img1" /></li>
+        <li><img src="./pics4.png" alt="img1" /></li>
+        <li><img src="./pics5.png" alt="img1" /></li>
+      </ul>
+    </div>
+
+    <a id="prev" href="#">PREV</a>
+    <a id="next" href="#">NEXT</a>
+  </body>
+</html>
